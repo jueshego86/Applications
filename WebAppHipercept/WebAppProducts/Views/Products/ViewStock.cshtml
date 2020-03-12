@@ -1,0 +1,83 @@
+﻿@model WebAppProducts.ViewModels.ProductViewModel
+
+@{
+    /**/
+
+    ViewBag.Title = "ViewStock";
+}
+
+<h2>Edit Stock</h2>
+<br />
+@using (Html.BeginForm("SaveStock", "Products", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="form-group row">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.ProductId, "Product", htmlAttributes: new { @class = "control-label col-sm-1" })
+            <div class="col-sm-3 col-sm-offset-8">
+                @Html.DropDownListFor(model => model.ProductId, null, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProductId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Stock, "Stock", htmlAttributes: new { @class = "control-label col-sm-1" })
+            <div class="col-sm-3 col-sm-offset-8">
+                @Html.EditorFor(model => model.Stock, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Stock, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @if (string.IsNullOrEmpty(@ViewBag.MessageSuccess))
+                {
+                    <button type="submit" class="btn btn-dark" style="background-color:#2C1E4E">Save</button>
+                }
+            </div>
+            <br />
+        </div>
+        <label class="alert-danger">@ViewBag.Message</label>
+        <label class="alert-danger">@ViewBag.Exception</label>
+        <label class="alert-success">@ViewBag.MessageSuccess</label>
+    </div>
+}
+@Html.ActionLink("New Edit", "ViewStock")
+<style>
+    .row {
+        margin-bottom: 0;
+    }
+</style>
+
+@section scripts {
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#ProductId").change(function () {
+                if ($("#ProductId").val() > 0) {
+                    GetStock();
+                } else {
+                    $("#Stock").val("");
+                }
+            });
+        });
+
+        function GetStock() {
+            //location.href = "/Products/GetStock?productId=" + $("#ProductId").val();
+            var apiUrl = "http://localhost:57691/Products/GetStock?productId=" + $("#ProductId").val();
+            $.ajax({
+                url: apiUrl,
+                success: function (response) {
+                    console.log(response);
+                    $("#Stock").val(response);
+                },
+                error: function () {
+                    console.log("Error");
+                }
+            });
+        }
+    </script>
+}
+

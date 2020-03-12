@@ -1,0 +1,68 @@
+﻿@model WebAppProducts.Models.EditAccountViewModel
+
+@{
+    ViewBag.Title = "ViewUser";
+}
+
+<h2>View User</h2>
+
+<hr />
+<div class="form-group row">
+    @Html.LabelFor(model => model.UserName, new { @class = "col-md-2 control-label" })
+    <div class="col-sm-3 col-sm-offset-8">
+        @Html.TextBoxFor(m => m.UserName, new { @readonly = "readonly" })
+    </div>
+</div>
+<div class="form-group row">
+    @Html.LabelFor(model => model.RoleName, new { @class = "col-md-2 control-label" })
+    <div class="col-sm-3 col-sm-offset-8">
+        @Html.TextBoxFor(m => m.RoleName, new { @readonly = "readonly" })
+    </div>
+</div>
+<div class="form-group row">
+    @Html.LabelFor(model => model.Age, new { @class = "col-md-2 control-label" })
+    <div class="col-sm-3 col-sm-offset-8">
+        @Html.TextBoxFor(m => m.Age, new { @readonly = "readonly" })
+    </div>
+</div>
+<div class="form-group row">
+    @Html.LabelFor(model => model.Gender, new { @class = "col-md-2 control-label" })
+    <div class="col-sm-3 col-sm-offset-8">
+        @Html.TextBoxFor(m => m.Gender, new { @readonly = "readonly" })
+    </div>
+</div>
+<div class="form-group row">
+    @Html.LabelFor(model => model.Country, new { @class = "col-md-2 control-label" })
+    <div class="col-sm-3 col-sm-offset-8">
+        @Html.TextBoxFor(m => m.Country, new { @readonly = "readonly" })
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        @if (ViewBag.Edit)
+        {
+            @Html.ActionLink("Edit", "Edit", new { userId = Model.UserId })
+        }
+        else
+        {
+            @Html.ActionLink("New Request", "NewRequest", "Request", null, null)
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <style>
+        label {
+            margin-right: 10px !important;
+            padding-right: 0 !important;
+        }
+
+        input[type=text]{
+            background-color:ButtonFace;
+            border:none;
+        }
+    </style>
+}
+

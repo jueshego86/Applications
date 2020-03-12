@@ -1,0 +1,66 @@
+﻿@model IEnumerable<WebAppProducts.Models.EditAccountViewModel>
+
+@{
+    ViewBag.Title = "Account List";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("New", "Register")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().RoleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Country)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @Html.HiddenFor(modelItem => item.UserId)
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { userId = item.UserId}) |
+                @Html.ActionLink("Delete", "Delete", new { userId = item.UserId }, new { onclick = "return confirm('Do you wish delete this Account?');" })
+            </td>
+        </tr>
+    }
+
+</table>
+
