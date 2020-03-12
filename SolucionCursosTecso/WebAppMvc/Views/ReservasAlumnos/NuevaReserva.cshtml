@@ -1,0 +1,232 @@
+﻿@model WebAppMvc.ViewModels.ReservaAlumnoViewModel
+@{
+    ViewBag.Title = "Nueva Matrícula";
+}
+<h2>Nueva Matrícula</h2>
+<br />
+@using (Html.BeginForm("NuevaReserva", "ReservasAlumnos", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="form-group row">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.CursoId, "Curso", htmlAttributes: new { @class = "control-label col-sm-1" })
+            <div class="col-sm-3 col-sm-offset-8">
+                @Html.DropDownListFor(model => model.CursoId, null, "-- Seleccione un Curso --", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CursoId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.AlumnoNombre, "Alumno", htmlAttributes: new { @class = "control-label col-sm-1" })
+            @Html.HiddenFor(model => model.AlumnoId)
+            <div class="col-sm-3 col-sm-offset-8">
+                @Html.EditorFor(model => model.AlumnoNombre, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                @Html.ValidationMessageFor(model => model.AlumnoNombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div id="divAlumnos" style="display:@ViewBag.AlumnosDisplay">
+            <div class="card" style="width: 40rem; background-color:#BDC3C7">
+                <div class="form-horizontal">
+                    <div class="form-group row">
+                        &nbsp;&nbsp;
+                        <input type="hidden" id="hdAlumnoId" />
+                        @Html.Label("Cedula", htmlAttributes: new { @class = "col-sm-2" })
+                        <div class="col-sm-4 col-sm-offset-7">
+                            <input type="text" id="txtCcAlumnoBuscar" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        &nbsp;&nbsp;
+                        @Html.Label("Nombre", htmlAttributes: new { @class = "col-sm-2" })
+                        <div class="col-sm-7 col-sm-offset-3">
+                            <input type="text" id="txtNombreAlumnoBuscar" class="form-control" disabled="disabled" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="button" value="Buscar" class="btn btn-dark" onclick="BuscarAlumno();" style="background-color:#2C1E4E" />
+                            <input type="button" value="Aceptar" class="btn btn-dark" onclick="AceptarAlumno();" style="background-color:#2C1E4E" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="button" class="btn btn-dark" style="background-color:#2C1E4E" hidden="@ViewBag.BtnAgregarAlumnoHidden" onclick="AgregarAlumno();">Agregar Alumno</button>
+                <button type="button" class="btn btn-dark" style="background-color:#2C1E4E" onclick="Nueva();">Limpiar</button>
+            </div>
+            <br />
+        </div>
+    </div>
+}
+
+<div id="divSillas" style="display:@ViewBag.SillasDisplay">
+    <label style="font-family:Arial; font-weight:bold">Elija una Silla</label>
+    <table border="0" cellspacing="50" @*style="border-radius:3px 4px; background-color:#B6B6AC"*@ cellpadding="5">
+        <tr>
+            <td><button class="@Model.Sillas.FirstOrDefault(s => s.Codigo == "A1").Estado" id="A1" onclick="Reservar('A1');"></button></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><button class="@Model.Sillas.FirstOrDefault(s => s.Codigo == "A2").Estado" id="A2" onclick="Reservar('A2');"></button></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><button class="@Model.Sillas.FirstOrDefault(s => s.Codigo == "A3").Estado" id="A3" onclick="Reservar('A3');"></button></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><button class="@Model.Sillas.FirstOrDefault(s => s.Codigo == "A4").Estado" id="A4" onclick="Reservar('A4');"></button></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><button class="@Model.Sillas.FirstOrDefault(s => s.Codigo == "A5").Estado" id="A5" onclick="Reservar('A5');"></button></td>
+        </tr>
+        <tr>
+            <td><button class="@Model.Sillas.FirstOrDefault(s => s.Codigo == "B1").Estado" id="B1" onclick="Reservar('B1');"></button></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><button class="@Model.Sillas.FirstOrDefault(s => s.Codigo == "B2").Estado" id="B2" onclick="Reservar('B2');"></button></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><button class="@Model.Sillas.FirstOrDefault(s => s.Codigo == "B3").Estado" id="B3" onclick="Reservar('B3');"></button></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><button class="@Model.Sillas.FirstOrDefault(s => s.Codigo == "B4").Estado" id="B4" onclick="Reservar('B4');"></button></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><button class="@Model.Sillas.FirstOrDefault(s => s.Codigo == "B5").Estado" id="B5" onclick="Reservar('B5');"></button></td>
+        </tr>
+        <tr>
+            <td><button class="@Model.Sillas.FirstOrDefault(s => s.Codigo == "C1").Estado" id="C1" onclick="Reservar('C1');"></button></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><button class="@Model.Sillas.FirstOrDefault(s => s.Codigo == "C2").Estado" id="C2" onclick="Reservar('C2');"></button></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><button class="@Model.Sillas.FirstOrDefault(s => s.Codigo == "C3").Estado" id="C3" onclick="Reservar('C3');"></button></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><button class="@Model.Sillas.FirstOrDefault(s => s.Codigo == "C4").Estado" id="C4" onclick="Reservar('C4');"></button></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><button class="@Model.Sillas.FirstOrDefault(s => s.Codigo == "C5").Estado" id="C5" onclick="Reservar('C5');"></button></td>
+        </tr>
+        <tr>
+            <td><button class="@Model.Sillas.FirstOrDefault(s => s.Codigo == "D1").Estado" id="D1" onclick="Reservar('D1');"></button></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><button class="@Model.Sillas.FirstOrDefault(s => s.Codigo == "D2").Estado" id="D2" onclick="Reservar('D2');"></button></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><button class="@Model.Sillas.FirstOrDefault(s => s.Codigo == "D3").Estado" id="D3" onclick="Reservar('D3');"></button></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><button class="@Model.Sillas.FirstOrDefault(s => s.Codigo == "D4").Estado" id="D4" onclick="Reservar('D4');"></button></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><button class="@Model.Sillas.FirstOrDefault(s => s.Codigo == "D5").Estado" id="D5" onclick="Reservar('D5');"></button></td>
+        </tr>
+    </table>
+    <div>
+        <label id="lblSilla" style="font-family:Arial; font-weight:bold"></label>
+        <label id="lblInfo" style="font-family:Arial; font-weight:bold"></label>
+    </div>
+</div>
+
+<h3>@ViewBag.Mensaje</h3>
+<label class="alert-danger">@ViewBag.Error</label>
+
+<link href="~/Content/sillas.css" rel="stylesheet" />
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $(".sillaOcupada").hover(function () {
+                $("#lblSilla").text(this.id + ": ");
+                $("#lblInfo").text("Ocupada");
+                $("#lblInfo").css("color", "#E31937");
+            },
+                function () {
+                    $("#lblSilla").text("");
+                    $("#lblInfo").text("");
+                });
+
+            $(".sillaDisponible").hover(function () {
+                $("#lblSilla").text(this.id + ": ");
+                $("#lblInfo").text("Disponible");
+                $("#lblInfo").css("color", "#5734CE");
+            },
+                function () {
+                    $("#lblSilla").text("");
+                    $("#lblInfo").text("");
+                });
+
+            $(".sillaSeleccionada").hover(function () {
+                $("#lblSilla").text(this.id + ": ");
+                $("#lblInfo").text("Seleccionada");
+                $("#lblInfo").css("color", "#80798D");
+            },
+                function () {
+                    $("#lblSilla").text("");
+                    $("#lblInfo").text("");
+                });
+
+            $("#CursoId").change(function () {
+                MostrarSillas();
+            });
+
+            $("#AlumnoNombre").change(function () {
+                MostrarSillas();
+            });
+        });
+
+        function AgregarAlumno() {
+            var divAlumnos = $("#divAlumnos");
+            divAlumnos.fadeIn("slow");
+        }
+
+        function BuscarAlumno() {
+            if ($('#txtCcAlumnoBuscar').val()) {
+                $.getJSON('http://localhost:49500/ReservasAlumnos/BuscarAlumno?cedula=' + $('#txtCcAlumnoBuscar').val())
+                    .done(function (datos) {
+                        $.each(datos, function (key, item) {
+                            if (key == "AlumnoId") {
+                                $("#hdAlumnoId").val(item);
+                            } else if (key == "NombreAlumno") {
+                                $("#txtNombreAlumnoBuscar").val(item);
+                            }
+                        });
+                    })
+                    .fail(function () {
+                        alert("El alumno " + $('#txtCcAlumnoBuscar').val() + " no existe");
+                        $("#hdAlumnoId").val(null);
+                        $("#txtNombreAlumnoBuscar").val(null);
+                        $('#txtCcAlumnoBuscar').val(null);
+                    });
+            }
+        }
+
+        function AceptarAlumno() {
+            var id = $('#hdAlumnoId').val();
+            if (id > 0) {
+                $("#AlumnoId").val($("#hdAlumnoId").val());
+                $("#AlumnoNombre").val($("#txtNombreAlumnoBuscar").val());
+                $("#divAlumnos").fadeOut("slow");
+                $("#hdAlumnoId").val(null);
+                $("#txtNombreAlumnoBuscar").val(null);
+                $('#txtCcAlumnoBuscar').val(null);
+                MostrarSillas();
+            }
+        }
+
+        function Reservar(silla) {
+            if ($('#CursoId').val() && $('#AlumnoId').val()) {
+                var seleccion = document.getElementById(silla).className;
+
+                if (document.getElementById(silla).className == "sillaOcupada") { return false; }
+
+                location.href = "/ReservasAlumnos/GuardarReserva?CursoId=" + $("#CursoId").val() +
+                    "&AlumnoId=" + $("#AlumnoId").val() + "&Silla=" + silla + "&seleccion=" + seleccion;
+            }
+        }
+
+        function MostrarSillas() {
+            if ($('#CursoId').val() == 0 || $('#AlumnoId').val() == 0) {
+                return false;
+            } else {
+                location.href = "/ReservasAlumnos/VerDisponibilidad?cursoId=" + $("#CursoId").val() + "&alumnoId=" + $('#AlumnoId').val();
+            }
+        }
+
+        function Nueva() {
+            location.href = "/ReservasAlumnos/NuevaReserva";
+        }
+    </script>
+}
+

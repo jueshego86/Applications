@@ -1,0 +1,65 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Modelos.DTO.DTONotas>
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Listado de Notas por Alumno</h2>
+<p>
+    @Html.ActionLink("Nueva Calificacion", "NuevaNota")
+</p>
+@using (Html.BeginForm("Index", "Notas", FormMethod.Get))
+{
+
+    <div class="form-group row">
+        @*<div class="col-md-offset-5 col-md-7">*@
+        Nombre Alumno:&nbsp;&nbsp; @Html.TextBox("filtro", ViewBag.FiltroActual as String, new { @class = "form-control col-sm-4" })&nbsp;&nbsp;
+        <input type="submit" value="Buscar" class="btn btn-dark col-sm-1" style="background-color:#2C1E4E" />
+        @*</div>*@
+        <br />
+    </div>
+
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Nombre", "Index", new { ordenamiento = ViewBag.NombreOrdenamiento, filtroActual = ViewBag.FiltroActual })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().dtoAlumno.Cedula)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().dtoCurso.NombreCurso)
+        </th>
+        <th>
+            Calificacion/Estado
+        </th>
+        <th></th>
+            
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.HiddenFor(modelItem => item.NotaCursoId)
+                @Html.DisplayFor(modelItem => item.dtoAlumno.NombreAlumno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dtoAlumno.Cedula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dtoCurso.NombreCurso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Calificacion)
+            </td>
+        </tr>
+    }
+</table>
+<br />
+Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+
+@Html.PagedListPager(Model, pagina => Url.Action("Index", new { pagina, ordenamiento = ViewBag.OrdenamientoActual, filtroActual = ViewBag.FiltroActual }))
+

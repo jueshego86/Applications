@@ -1,0 +1,64 @@
+﻿@model IEnumerable<WebAppMvc.ViewModels.CursoViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<br />
+<p>
+    @Html.ActionLink("Nuevo", "NuevoEditar")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Codigo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().NombreCurso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Activo)
+        </th>
+        <th>
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        @Html.HiddenFor(modelItem => item.CursoId)
+        <td>
+            @Html.DisplayFor(modelItem => item.Codigo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreCurso)
+        </td>
+        <td>
+            @*@Html.DropDownListFor(modelItem => item.Activo, new SelectList(new List<SelectListItem>
+            {
+                new SelectListItem { Text = "Si", Value = "1" },
+                new SelectListItem { Text = "No", Value = "0" }
+            }, "Value", "Text"), htmlAttributes: new { @class = "control-label", disabled = "disabled" })*@
+            @*<label class="custom-control-label">*@
+                @*@item.Activo == 1 : "Si" ? "No"*@
+                @if(item.Activo == 1)
+                {
+                    <label class="control-label">Si</label>
+                }
+                else
+                {
+                    <label class="control-label">No</label>
+                }
+            @*</label>*@
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "NuevoEditar", new { CursoId = item.CursoId, Codigo = item.Codigo, NombreCurso = item.NombreCurso, Activo = item.Activo }) |
+            @Html.ActionLink("Borrar", "Eliminar", new { cursoId = item.CursoId }, new { onclick = "return confirm('¿Realmente desea eliminar este curso?');" })
+        </td>
+    </tr>
+                }
+
+</table>
+
+

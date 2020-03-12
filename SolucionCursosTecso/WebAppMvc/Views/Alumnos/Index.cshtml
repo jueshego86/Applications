@@ -1,0 +1,42 @@
+﻿@model IEnumerable<WebAppMvc.ViewModels.AlumnoViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "NuevoEditar")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Cedula)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().NombreAlumno)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @Html.HiddenFor(modelItem => item.AlumnoId)
+            <td>
+                @Html.DisplayFor(modelItem => item.Cedula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreAlumno)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "NuevoEditar", new { AlumnoId = item.AlumnoId, Cedula = item.Cedula, NombreAlumno = item.NombreAlumno }) |
+                @Html.ActionLink("Borrar", "Eliminar", new { alumnoId = item.AlumnoId }, new { onclick = "return confirm('¿Realmente desea eliminar este alumno?');" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+

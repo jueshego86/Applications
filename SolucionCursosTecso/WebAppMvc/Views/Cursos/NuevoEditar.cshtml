@@ -1,0 +1,56 @@
+﻿@model WebAppMvc.ViewModels.CursoViewModel
+
+<h2>@ViewBag.Title</h2>
+<br />
+<p>
+    @Html.ActionLink("Index", "Index")
+<p>
+
+@using (Html.BeginForm("NuevoEditar", "Cursos", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.CursoId)
+
+    <div class="form-horizontal">
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Codigo, htmlAttributes: new { @class = "col-sm-1" })
+            <div class="col-sm-3">
+                @Html.EditorFor(m => m.Codigo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.Codigo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(m => m.NombreCurso, htmlAttributes: new { @class = "col-sm-1" })
+            <div class="col-sm-3 col-sm-offset-8">
+                @Html.EditorFor(m => m.NombreCurso, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.NombreCurso, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Activo, htmlAttributes: new { @class = "col-sm-1" })
+            <div class="col-sm-3 col-sm-offset-8">
+                @Html.DropDownListFor(m => m.Activo, null, "", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Activo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-1"></label>
+            <input type="submit" value="Guardar" class="btn btn-dark col-sm-1 col-sm-offset-11" style="background-color:#2C1E4E" />
+        </div>
+    </div>
+}
+
+<label class="alert-danger">@ViewBag.Error</label>
+
+@if (!String.IsNullOrEmpty(ViewBag.Mensaje))
+{
+    <script type="text/javascript">
+        alert('@ViewBag.Mensaje')
+    </script>
+}

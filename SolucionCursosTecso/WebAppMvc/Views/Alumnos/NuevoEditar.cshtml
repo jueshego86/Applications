@@ -1,0 +1,50 @@
+﻿@model WebAppMvc.ViewModels.AlumnoViewModel
+
+<h2>@ViewBag.Title</h2>
+<br />
+<p>
+    @Html.ActionLink("Index", "Index")
+</p>
+
+@using (Html.BeginForm("NuevoEditar", "Alumnos", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.AlumnoId)
+
+    <div class="form-horizontal">
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Cedula, htmlAttributes: new { @class = "col-sm-1" })
+            <div class="col-sm-3">
+                @Html.EditorFor(m => m.Cedula, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.Cedula, "", new { @class = "text-danger" })
+            </div>
+            @*<div class="col-sm-1 col-sm-offset-7">
+                <input type="button" value="Buscar" onclick="f_Buscar();" class="btn btn-primary" />
+            </div>*@
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(m => m.NombreAlumno, htmlAttributes: new { @class = "col-sm-1" })
+            <div class="col-sm-3 col-sm-offset-8">
+                @Html.EditorFor(m => m.NombreAlumno, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.NombreAlumno, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <input type="submit" value="Guardar" class="btn btn-dark col-sm-1" style="background-color:#2C1E4E" />
+        </div>
+    </div>
+}
+
+<label class="alert-danger">@ViewBag.Error</label>
+
+@if (!String.IsNullOrEmpty(ViewBag.Mensaje))
+{
+    <script type="text/javascript">
+        alert('@ViewBag.Mensaje')
+    </script>
+}

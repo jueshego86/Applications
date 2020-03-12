@@ -1,0 +1,37 @@
+﻿.sillaDisponible {
+    border: 1px solid;
+    border-radius: 2px;
+    width: 40px;
+    height: 20px;
+    background-color: #9CA4E3;
+    border-color: #474E86;
+}
+
+    .sillaDisponible:hover {
+        background-color: #6E51FF;
+    }
+
+.sillaOcupada {
+    border: 1px solid;
+    border-radius: 2px;
+    width: 40px;
+    height: 20px;
+    background-color: #9B9FA5;
+    border-color: #6A6A6A;
+}
+
+    .sillaOcupada:hover {
+    }
+
+.sillaSeleccionada {
+    border: 1px solid;
+    border-radius: 2px;
+    width: 40px;
+    height: 20px;
+    background-color: #2C1E4E;
+    border-color: #2C1E4E;
+}
+
+    .sillaSeleccionada:hover {
+        background-color: #9681FF;
+    }
