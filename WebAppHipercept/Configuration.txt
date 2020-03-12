@@ -3,9 +3,21 @@
    - App.config at DataAccess
    - Web.config at WebApi
 
-2. Solution uses Entity Framework - Code First with manual migrations (), to genetate model , at Nuget Packages Manager execute next command on 
-    WebAppProducts for generate Identity model, and then on DataAccess for generate app model:
+2. Solution uses Entity Framework - Code First with manual migrations (), to genetate model , at Nuget Packages Manager execute next command on WebAppProducts project for generate Identity model, and then on DataAccess project for generate app model:
 
  > add-migration <any name>
  > update-database
+ 
+ The model tables generated are:
+ - LogInUsers
+ - Product
+ - ProductRequest
+ 
+ 3. Run the application and the data on Products table will be auntomatically populated with four products an a stock
+ 
+ The application consists on Register and Log In users (admin and user). The admin user be able to update the stock at Products, admin the users data and view the Logins. The regular user will be able to request a product with a available quantity.
+ 
+The solution was made with MVC pattern at Presentation layer, Razor (cshtml) pages. and also contains a Facade Layer, Model, DataAccess Layer and a WebApi Rest Service project wich Project Controller and has some methods on Products entity. It uses Unity to perform the dependencies injection.
+  
+  
   
