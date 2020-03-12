@@ -1,0 +1,11 @@
+1. Change SqlSerever connections string at:
+   - Web.config at WebAppProducts
+   - App.config at DataAccess
+   - Web.config at WebApi
+
+2. Solution uses Entity Framework - Code First with manual migrations (), to genetate model , at Nuget Packages Manager execute next command on 
+    WebAppProducts for generate Identity model, and then on DataAccess for generate app model:
+
+ > add-migration <any name>
+ > update-database
+  
