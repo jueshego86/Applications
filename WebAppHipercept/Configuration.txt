@@ -8,7 +8,7 @@
  > add-migration <any name>
  > update-database
  
- The model tables generated are:
+ The DataBase created is called DBHiperceptJEHG and The model tables generated are:
  - LogInUsers
  - Product
  - ProductRequest
