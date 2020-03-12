@@ -8,14 +8,15 @@ namespace WebAppMvc.ViewModels
 {
     public class ReservaAlumnoViewModel
     {
-        [Required(ErrorMessage = "Debe agregar un Alumno")]
+        [Required(ErrorMessage = "Select a Student")]
         public int AlumnoId { get; set; }
 
-        [Display(Name = "Alumno")]
+        [Display(Name = "Student")]
         [MaxLength(50)]
         public string AlumnoNombre { get; set; }
 
-        [Required(ErrorMessage = "Debe seleccionar un Curso")]
+        [Required(ErrorMessage = "Select a Course")]
+        [Display(Name = "Course")]
         public int CursoId { get; set; }
 
         public List<CursoViewModel> Cursos { get; set; }

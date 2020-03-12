@@ -71,11 +71,11 @@ namespace WebAppMvc.Controllers
             {
                 if (alumno.AlumnoId > 0)
                 {
-                    ViewBag.Title = "Editar Alumno";
+                    ViewBag.Title = "Edit Student";
                     return View(alumno);
                 }
 
-                ViewBag.Title = "Nuevo Alumno";
+                ViewBag.Title = "New Student";
                 ModelState.Clear();
             }
             catch (Exception ex)
@@ -117,7 +117,7 @@ namespace WebAppMvc.Controllers
                     }
                     else
                     {
-                        ViewBag.Mensaje = $"El alumno con cedula {alumno.Cedula} ya existe";
+                        ViewBag.Mensaje = $"Student {alumno.Cedula} already exists";
 
                         datosValidos = false;
                     }
@@ -126,7 +126,7 @@ namespace WebAppMvc.Controllers
                 {
                     if (alumnoBuscar != null)
                     {
-                        ViewBag.Mensaje = $"El alumno con cedula {alumno.Cedula} ya existe";
+                        ViewBag.Mensaje = $"Student {alumno.Cedula} already exists";
 
                         datosValidos = false;
                     }

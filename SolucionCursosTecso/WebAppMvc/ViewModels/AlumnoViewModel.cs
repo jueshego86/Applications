@@ -12,12 +12,12 @@ namespace WebAppMvc.ViewModels
 
         [StringLength(10, MinimumLength = 4, ErrorMessage = "El nombre debe tener una longitud entre 4 y 10 caracteres")]
         [Required]
-        [Display(Name = "Cédula")]
+        [Display(Name = "ID")]
         public string Cedula { get; set; }
 
         [StringLength(50, MinimumLength = 6, ErrorMessage = "El nombre debe tener una longitud entre 6 y 50 caracteres")]
         [Required]
-        [Display(Name = "Nombre")]
+        [Display(Name = "Name")]
         public string NombreAlumno { get; set; }
     }
 }

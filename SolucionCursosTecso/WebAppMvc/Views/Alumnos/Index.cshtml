@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Nuevo", "NuevoEditar")
+    @Html.ActionLink("New", "NuevoEditar")
 </p>
 <table class="table">
     <tr>
@@ -31,8 +31,8 @@
                 @Html.DisplayFor(modelItem => item.NombreAlumno)
             </td>
             <td>
-                @Html.ActionLink("Editar", "NuevoEditar", new { AlumnoId = item.AlumnoId, Cedula = item.Cedula, NombreAlumno = item.NombreAlumno }) |
-                @Html.ActionLink("Borrar", "Eliminar", new { alumnoId = item.AlumnoId }, new { onclick = "return confirm('¿Realmente desea eliminar este alumno?');" })
+                @Html.ActionLink("Edit", "NuevoEditar", new { AlumnoId = item.AlumnoId, Cedula = item.Cedula, NombreAlumno = item.NombreAlumno }) |
+                @Html.ActionLink("Delete", "Eliminar", new { alumnoId = item.AlumnoId }, new { onclick = "return confirm('¿Realmente desea eliminar este alumno?');" })
             </td>
         </tr>
     }

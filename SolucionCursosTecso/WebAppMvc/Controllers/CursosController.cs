@@ -70,11 +70,11 @@ namespace WebAppMvc.Controllers
 
             if (curso.CursoId > 0)
             {
-                ViewBag.Title = "Editar Curso";
+                ViewBag.Title = "Edit Course";
                 return View(curso);
             }
 
-            ViewBag.Title = "Nuevo Curso";
+            ViewBag.Title = "New Course";
             ModelState.Clear();
             return View();
         }
@@ -108,7 +108,7 @@ namespace WebAppMvc.Controllers
                     }
                     else
                     {
-                        ViewBag.Mensaje = $"El codigo {curso.Codigo} ya existe";
+                        ViewBag.Mensaje = $"Course {curso.Codigo} already exists";
 
                         datosValidos = false;
                     }
@@ -117,7 +117,7 @@ namespace WebAppMvc.Controllers
                 {
                     if (cursoBuscar != null)
                     {
-                        ViewBag.Mensaje = $"El codigo {curso.Codigo} ya existe";
+                        ViewBag.Mensaje = $"Course {curso.Codigo} already exists";
 
                         datosValidos = false;
                     }
@@ -156,8 +156,8 @@ namespace WebAppMvc.Controllers
         {
             ViewBag.Activo = new SelectList(new List<SelectListItem>
             {
-                new SelectListItem { Text = "Si", Value = "1" },
-                new SelectListItem { Text = "No", Value = "0" }
+                new SelectListItem { Text = "YES", Value = "1" },
+                new SelectListItem { Text = "NO", Value = "0" }
             }, "Value", "Text", "1");
         }
 

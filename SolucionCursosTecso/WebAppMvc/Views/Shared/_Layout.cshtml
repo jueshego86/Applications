@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - ASP.NET Solución Cursos Tecso</title>
+    <title>@ViewBag.Title - ASP.NET Courses</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body style="background-color:#DDDAEC">
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#2C1E4E;">
-        <a class="navbar-brand" href="#">Solución Cursos</a>
+        <a class="navbar-brand" href="#">Courses</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -18,38 +18,29 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Cursos
+                        Courses
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="~/Cursos/Index">Index</a>
-                        <a class="dropdown-item" href="~/Cursos/NuevoEditar">Nuevo</a>
+                        <a class="dropdown-item" href="~/Cursos/NuevoEditar">New</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Alumnos
+                        Students
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="~/Alumnos/Index">Index</a>
-                        <a class="dropdown-item" href="~/Alumnos/NuevoEditar">Nuevo</a>
+                        <a class="dropdown-item" href="~/Alumnos/NuevoEditar">New</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Matriculas
+                        Reserve
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="~/ReservasAlumnos/NuevaReserva">Nueva Matricula</a>
-                        <a class="dropdown-item" href="~/ReservasAlumnos/Index">Listado de Alumnos por Curso</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Calificaciones
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="~/Notas/NuevaNota">Nueva Calificacion</a>
-                        <a class="dropdown-item" href="~/Notas/Index">Listado de Notas por Alumno</a>
+                        <a class="dropdown-item" href="~/ReservasAlumnos/NuevaReserva">New</a>
+                        <a class="dropdown-item" href="~/ReservasAlumnos/Index">Students List By Course</a>
                     </div>
                 </li>
             </ul>
@@ -59,7 +50,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Solución Cursos Tecso ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year - Courses ASP.NET</p>
         </footer>
     </div>
 

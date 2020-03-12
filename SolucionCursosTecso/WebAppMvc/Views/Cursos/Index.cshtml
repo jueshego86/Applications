@@ -7,7 +7,7 @@
 <h2>Index</h2>
 <br />
 <p>
-    @Html.ActionLink("Nuevo", "NuevoEditar")
+    @Html.ActionLink("New", "NuevoEditar")
 </p>
 <table class="table">
     <tr>
@@ -53,8 +53,8 @@
             @*</label>*@
         </td>
         <td>
-            @Html.ActionLink("Editar", "NuevoEditar", new { CursoId = item.CursoId, Codigo = item.Codigo, NombreCurso = item.NombreCurso, Activo = item.Activo }) |
-            @Html.ActionLink("Borrar", "Eliminar", new { cursoId = item.CursoId }, new { onclick = "return confirm('¿Realmente desea eliminar este curso?');" })
+            @Html.ActionLink("Edit", "NuevoEditar", new { CursoId = item.CursoId, Codigo = item.Codigo, NombreCurso = item.NombreCurso, Activo = item.Activo }) |
+            @Html.ActionLink("Delete", "Eliminar", new { cursoId = item.CursoId }, new { onclick = "return confirm('¿Realmente desea eliminar este curso?');" })
         </td>
     </tr>
                 }

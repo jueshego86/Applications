@@ -44,6 +44,42 @@ namespace AccesoDatos.Migrations
                 new Modelos.Silla() { Codigo = "D5" }
                 );
             }
+
+            if (!context.Alumnos.Any())
+            {
+                context.Alumnos.AddOrUpdate(x => x.AlumnoId,
+                    new Modelos.Alumno() { Cedula = "12345", NombreAlumno= "Jack" },
+                    new Modelos.Alumno() { Cedula = "67890", NombreAlumno = "Louis" }
+                );
+            }
+
+            if (!context.Cursos.Any())
+            {
+                context.Cursos.AddOrUpdate(x => x.CursoId,
+                    new Modelos.Curso() { Codigo = "001", NombreCurso = ".Net", Activo = 1 },
+                    new Modelos.Curso() { Codigo = "002", NombreCurso = "Java", Activo = 1 }
+                );
+            }
+
+            if (!context.ReservasAlumnos.Any())
+            {
+                context.ReservasAlumnos.AddOrUpdate(x => x.ReservaAlumnoId,
+                    new Modelos.ReservaAlumno() { AlumnoId = 1, CursoId = 1 },
+                    new Modelos.ReservaAlumno() { AlumnoId = 1, CursoId = 2 },
+                    new Modelos.ReservaAlumno() { AlumnoId = 2, CursoId = 1 },
+                    new Modelos.ReservaAlumno() { AlumnoId = 2, CursoId = 2 }
+                );
+            }
+
+            if (!context.SillasReserva.Any())
+            {
+                context.SillasReserva.AddOrUpdate(x => x.SillaReservaId,
+                    new Modelos.SillaReserva() { ReservaAlumnoId = 1, SillaId = 5 },
+                    new Modelos.SillaReserva() { ReservaAlumnoId = 2, SillaId = 16 },
+                    new Modelos.SillaReserva() { ReservaAlumnoId = 3, SillaId = 10 },
+                    new Modelos.SillaReserva() { ReservaAlumnoId = 4, SillaId = 7 }
+                );
+            }
         }
     }
 }

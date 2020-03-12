@@ -54,9 +54,9 @@
     <Compile Include="Contratos\IAccesoDatosNotas.cs" />
     <Compile Include="Contratos\IAccesoDatosSillaReserva.cs" />
     <Compile Include="Contratos\IAccesoDatosReservaAlumno.cs" />
-    <Compile Include="Migrations\202003121847347_db.cs" />
-    <Compile Include="Migrations\202003121847347_db.Designer.cs">
-      <DependentUpon>202003121847347_db.cs</DependentUpon>
+    <Compile Include="Migrations\202003122033223_add.cs" />
+    <Compile Include="Migrations\202003122033223_add.Designer.cs">
+      <DependentUpon>202003122033223_add.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,8 +81,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003121847347_db.resx">
-      <DependentUpon>202003121847347_db.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003122033223_add.resx">
+      <DependentUpon>202003122033223_add.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

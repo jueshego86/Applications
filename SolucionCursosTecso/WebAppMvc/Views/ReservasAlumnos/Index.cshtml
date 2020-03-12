@@ -6,17 +6,17 @@
 @{
     ViewBag.Title = "Index";
 }
-<h2>Listado de Alumnos por Curso</h2>
+<h2>Students List By Course</h2>
 <p>
-    @Html.ActionLink("Nueva Matricula", "NuevaReserva")
+    @Html.ActionLink("New", "NuevaReserva")
 </p>
 @using (Html.BeginForm("Index", "ReservasAlumnos", FormMethod.Get))
 {
 
 <div class="form-group row">
     @*<div class="col-md-offset-5 col-md-7">*@
-    Nombre Curso:&nbsp;&nbsp; @Html.TextBox("filtro", ViewBag.FiltroActual as String, new { @class = "form-control col-sm-4" })&nbsp;&nbsp;
-    <input type="submit" value="Buscar" class="btn btn-dark col-sm-1" style="background-color:#2C1E4E" />
+    Course Name:&nbsp;&nbsp; @Html.TextBox("filtro", ViewBag.FiltroActual as String, new { @class = "form-control col-sm-4" })&nbsp;&nbsp;
+    <input type="submit" value="Search" class="btn btn-dark col-sm-1" style="background-color:#2C1E4E" />
     @*</div>*@
     <br />
 </div>
@@ -25,7 +25,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.ActionLink("Nombre", "Index", new { ordenamiento = ViewBag.NombreOrdenamiento, filtroActual = ViewBag.FiltroActual })
+            @Html.ActionLink("Name", "Index", new { ordenamiento = ViewBag.NombreOrdenamiento, filtroActual = ViewBag.FiltroActual })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().dtoAlumno.Cedula)
@@ -48,7 +48,7 @@
                 @Html.DisplayFor(modelItem => item.dtoAlumno.NombreAlumno)
             </td>
             <td>
-                @Html.ActionLink("Detalles", "NuevaReserva", new { CursoId = item.dtoCurso.CursoId, AlumnoId = item.dtoAlumno.AlumnoId }) 
+                @Html.ActionLink("Details", "NuevaReserva", new { CursoId = item.dtoCurso.CursoId, AlumnoId = item.dtoAlumno.AlumnoId }) 
             </td>
         </tr>
     }

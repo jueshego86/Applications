@@ -10,14 +10,14 @@ namespace WebAppMvc.ViewModels
     {
         public int  NotaCursoId { get; set; }
 
-        [Required(ErrorMessage = "Debe agregar un Alumno")]
+        [Required(ErrorMessage = "Select a Student")]
         public int AlumnoId { get; set; }
 
-        [Display(Name = "Alumno")]
+        [Display(Name = "Student")]
         [MaxLength(50)]
         public string AlumnoNombre { get; set; }
 
-        [Required(ErrorMessage = "Debe seleccionar un Curso")]
+        [Required(ErrorMessage = "Select a Course")]
         public int CursoId { get; set; }
 
         [Required]

@@ -91,7 +91,7 @@ namespace WebAppMvc.Controllers
 
             if (alumno == null)
             {
-                string mensaje = $"El alumno con cedula {cedula} no existe.";
+                string mensaje = $"Student ID {cedula} does not exists.";
 
                 throw new Exception(mensaje);
             }
@@ -207,7 +207,7 @@ namespace WebAppMvc.Controllers
 
                         ViewBag.DivSillasDisplay = "normal";
 
-                        ViewBag.Mensaje = "Silla Reservada";
+                        ViewBag.Mensaje = "Chair Selected";
 
                         ViewBag.BtnAgregarAlumnoHidden = true;
                     }
@@ -220,7 +220,7 @@ namespace WebAppMvc.Controllers
                 }
                 else
                 {
-                    ViewBag.Mensaje = "Debe ingresar un cliente y seleccionar una pelicula.";
+                    ViewBag.Mensaje = "Must choose a course and a student.";
                 }
 
                 int reservaId = Convert.ToInt32(Session["ReservaId"]);
@@ -301,7 +301,7 @@ namespace WebAppMvc.Controllers
 
                 Session["ReservaId"] = null;
 
-                ViewBag.Mensaje = "Silla Liberada";
+                ViewBag.Mensaje = "Chair Free";
             }
             catch (Exception)
             {
