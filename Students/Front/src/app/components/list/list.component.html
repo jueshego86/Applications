@@ -1,0 +1,26 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">User Name</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Career</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let student of allStudents">
+            <td>{{student.id}}</td>
+            <td>{{student.userName}}</td>
+            <td>{{student.firstName}}</td>
+            <td>{{student.lastName}}</td>
+            <td>{{student.age}}</td>
+            <td>{{student.career}}</td>
+            <td><button class="btn btn-dark" [routerLink]='["/edit/" + student.id]'>Edit</button></td>
+            <td><button class="btn btn-dark" (click)="deleteStudent(student.id)">Delete</button></td>
+        </tr>
+    </tbody>
+</table>
