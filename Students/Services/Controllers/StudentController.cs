@@ -60,10 +60,10 @@
         }
 
         // POST: api/Student
-        [HttpPost("insert")]
+        [HttpPost]
         //[ValidateAntiForgeryToken]
         //[EnableCors("AllowMyOrigin")]
-        public async Task<ActionResult> Insert([FromBody]StudentViewModel studentViewModel)
+        public async Task<ActionResult> Post([FromBody]StudentViewModel studentViewModel)
         {
             try
             {
