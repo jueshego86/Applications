@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from 'src/app/services/student.service';
-import { Student } from 'src/app/models/studentModel';
-import { Observable } from 'rxjs';
+import { Student } from 'src/app/models/studentModel'; 
 
 @Component({
   selector: 'app-list',
@@ -18,11 +17,6 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this.getStudents();
   }
-  onGetSuccess(resp: Student[]): void {
-    console.log('onGetSuccess: ' + resp);
-
-    this.allStudents = resp;
-  }
 
   getStudents(): void {
     console.log('listcomponent llamar servicio getAllStudents')
@@ -30,6 +24,12 @@ export class ListComponent implements OnInit {
     this.studentService.getAllStudents()
       .subscribe(resp => this.onGetSuccess(resp),
         error => console.error('Error:' + error));
+  }
+
+  onGetSuccess(resp: Student[]): void {
+    console.log('onGetSuccess: ' + resp);
+
+    this.allStudents = resp;
   }
 
   editStudent(student: Student){

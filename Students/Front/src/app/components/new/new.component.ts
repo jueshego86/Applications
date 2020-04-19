@@ -71,19 +71,20 @@ export class NewComponent implements OnInit {
     student.age = formStudentsValue.txtAge;
     student.career = this.selCareer.value;
 
-    if(this.editMode == false){
-      console.log('newcomponent llamar servicio addStudent');
+    var resp;
 
-      var resp;
+    if(this.editMode == false){
+      
+      console.log('newcomponent llamar servicio addStudentId:' + student.id);
 
       this.studentService.addStudent(student)
         .subscribe(resp => this.onSaveSuccess(resp),
         error => console.error(error));
+
+      return;
     }
 
-    console.log('newcomponent llamar servicio editStudent');
-
-    var resp;
+    console.log('newcomponent llamar servicio editStudent:' + student);
 
     this.studentService.editStudent(student)
       .subscribe(resp => this.onSaveSuccess(resp),

@@ -25,7 +25,8 @@ export class StudentService {
   }
 
   addStudent(student: Student): Observable<number> {
-    return this.http.post<number>(this.baseUrl + '/insert', student);
+    student.id = 0;
+    return this.http.post<number>(this.baseUrl, student);
   }
 
   editStudent(student: Student): Observable<number> {
