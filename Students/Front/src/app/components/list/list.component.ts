@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from 'src/app/services/student.service';
 import { Student } from 'src/app/models/studentModel'; 
+import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import * as action from 'src/app/app.counterActions'
 
 @Component({
   selector: 'app-list',
@@ -11,12 +14,15 @@ export class ListComponent implements OnInit {
 
   allStudents: Student[];
   filterList = ''; 
+  message$: Observable<any>;
 
-  constructor(private studentService: StudentService) { 
+  constructor(private studentService: StudentService,
+    private store: Store<{ message: number }>) { 
   }
  
   ngOnInit(): void {
     this.getStudents();
+    
   }
 
   getStudents(): void {
@@ -31,9 +37,11 @@ export class ListComponent implements OnInit {
     console.log('onGetSuccess: ' + resp);
 
     this.allStudents = resp;
-  }
 
-  editStudent(student: Student){
+    var count = this.allStudents.length as number
+    
+    this.store.dispatch(action.setCount({count: count}))
+    this.message$ = this.store.select('message');
     
   }
 

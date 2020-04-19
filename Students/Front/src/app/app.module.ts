@@ -9,6 +9,8 @@ import { NewComponent } from './components/new/new.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from './pipes/filter.pipe';
+import { StoreModule } from '@ngrx/store';
+import { counterReducer } from './app.counterReducer'
 
 @NgModule({
   declarations: [
@@ -23,7 +25,10 @@ import { FilterPipe } from './pipes/filter.pipe';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot({
+      countStudents : counterReducer
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
