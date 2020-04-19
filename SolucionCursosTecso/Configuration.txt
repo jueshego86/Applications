@@ -1,0 +1,26 @@
+1. Change SqlSerever connections string at:
+   - App.config at AccesoDatos project
+
+2. Solution uses Entity Framework - Code First with manual migrations (), to genetate model , 
+at Nuget Packages Manager execute next command on WebAppProducts project for generate Identity model, 
+and then on DataAccess project for generate app model:
+
+ > add-migration <any name>
+ > update-database
+ 
+ The DataBase created is called DBPruebaTecso and the model tables generated are:
+ - Alumnos (Students)
+ - Cursos (Courses)
+ - Logs
+ - ReservasAlumnos (StudentReserves)
+ - Sillas (Chairs)
+ - SillasReserva (ReservesChair)
+ 
+ 3. Run the application and some data is automatically populated on the Courses, Studenst and Reserves.
+ 
+ The application consists on Courses Reserves, create students, courses, and assign those on a reserve through a view where can choose a chair similar to choose a chair at the cinema.
+ 
+The solution was made with MVC pattern at Presentation layer, Razor (cshtml) pages. and also contains a Facade Layer, Model, and DataAccess Layer. It uses Unity to perform the dependencies injection.
+  
+  
+  
