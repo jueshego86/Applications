@@ -8,13 +8,15 @@ import { ListComponent } from './components/list/list.component';
 import { NewComponent } from './components/new/new.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     ListComponent,
-    NewComponent
+    NewComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
