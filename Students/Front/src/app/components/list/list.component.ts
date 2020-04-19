@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StudentService } from 'src/app/services/student.service';
 import { Student } from 'src/app/models/studentModel'; 
 import { Observable } from 'rxjs';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import * as action from 'src/app/app.counterActions'
 
 @Component({
@@ -17,12 +17,11 @@ export class ListComponent implements OnInit {
   message$: Observable<any>;
 
   constructor(private studentService: StudentService,
-    private store: Store<{ message: number }>) { 
+    private store: Store<{ countStudents: number }>) { 
   }
  
   ngOnInit(): void {
     this.getStudents();
-    
   }
 
   getStudents(): void {
@@ -38,11 +37,9 @@ export class ListComponent implements OnInit {
 
     this.allStudents = resp;
 
-    var count = this.allStudents.length as number
+    var qtyStudents = this.allStudents.length as number
     
-    this.store.dispatch(action.setCount({count: count}))
-    this.message$ = this.store.select('message');
-    
+    this.store.dispatch(action.setCount({count: qtyStudents}))
   }
 
   deleteStudent(id: number){

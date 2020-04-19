@@ -78,7 +78,7 @@
 
                 Student student = new Student
                 {
-                    UserName = studentViewModel.UserName,
+                    UserName = studentViewModel.UserName.ToLower(),
                     FirstName = studentViewModel.FirstName,
                     LastName = studentViewModel.LastName,
                     Age = studentViewModel.Age,
@@ -111,7 +111,7 @@
                 Student student = new Student
                 {
                     Id = studentViewModel.Id,
-                    UserName = studentViewModel.UserName,
+                    UserName = studentViewModel.UserName.ToLower(),
                     FirstName = studentViewModel.FirstName,
                     LastName = studentViewModel.LastName,
                     Age = studentViewModel.Age,

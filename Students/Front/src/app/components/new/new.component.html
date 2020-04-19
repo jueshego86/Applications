@@ -5,22 +5,22 @@
     <div class="form-group">
         <label for="txtUserName">User Name</label>
         <input type="text" class="form-control" formControlName="txtUserName" style="text-transform: lowercase;" 
-        [class.is-invalid]="formNewStudent.get('txtUserName').touched && formNewStudent.get('txtUserName').invalid">
+        [class.is-invalid]="formNewStudent.get('txtUserName').touched && formNewStudent.get('txtUserName').invalid" maxlength="20">
     </div>
     <div class="form-group">
         <label for="txtFirstName">First Name</label>
         <input type="text" class="form-control" formControlName="txtFirstName" [class.is-invalid]=
-        "formNewStudent.get('txtFirstName').touched && formNewStudent.get('txtFirstName').invalid">
+        "formNewStudent.get('txtFirstName').touched && formNewStudent.get('txtFirstName').invalid" maxlength="20">
     </div>
     <div class="form-group">
         <label for="txtLastName">Last Name</label>
         <input type="text" class="form-control" formControlName="txtLastName" [class.is-invalid]=
-        "formNewStudent.get('txtLastName').touched && formNewStudent.get('txtLastName').invalid">
+        "formNewStudent.get('txtLastName').touched && formNewStudent.get('txtLastName').invalid" maxlength="20">
     </div>
     <div class="form-group">
         <label for="txtAge">Age</label>
         <input type="number" class="form-control" formControlName="txtAge" [class.is-invalid]=
-        "formNewStudent.get('txtAge').touched && formNewStudent.get('txtAge').invalid">
+        "formNewStudent.get('txtAge').touched && formNewStudent.get('txtAge').invalid" maxlength="20">
     </div>
     <div class="form-group">
         <label for="selCareer">Career</label>
