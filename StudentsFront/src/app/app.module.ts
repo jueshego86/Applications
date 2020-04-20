@@ -8,20 +8,27 @@ import { ListComponent } from './components/list/list.component';
 import { NewComponent } from './components/new/new.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterPipe } from './pipes/filter.pipe';
+import { StoreModule } from '@ngrx/store';
+import { counterReducer } from './app.counterReducer'
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     ListComponent,
-    NewComponent
+    NewComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot({
+      countStudents : counterReducer
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,17 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from 'src/app/services/student.service';
 import { Student } from 'src/app/models/studentModel'; 
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import * as action from 'src/app/app.counterActions'
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  styleUrls: ['./list.component.css'] 
 })
 export class ListComponent implements OnInit {
 
   allStudents: Student[];
+  filterList = ''; 
+  message$: Observable<any>;
 
-  constructor(private studentService: StudentService) { 
+  constructor(private studentService: StudentService,
+    private store: Store<{ countStudents: number }>) { 
   }
  
   ngOnInit(): void {
@@ -30,10 +36,10 @@ export class ListComponent implements OnInit {
     console.log('onGetSuccess: ' + resp);
 
     this.allStudents = resp;
-  }
 
-  editStudent(student: Student){
+    var qtyStudents = this.allStudents.length as number
     
+    this.store.dispatch(action.setCount({count: qtyStudents}))
   }
 
   deleteStudent(id: number){

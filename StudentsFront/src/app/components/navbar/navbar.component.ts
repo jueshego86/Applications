@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  countStudents$: Observable<any>;
+
+  constructor(private store: Store<{ countStudents: number }>) {
+
+   }
 
   ngOnInit(): void {
+    this.countStudents$ = this.store.select('countStudents');
   }
 
 }
