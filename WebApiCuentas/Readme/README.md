@@ -17,19 +17,23 @@ La capa de **DataAccess** usa Entity Framework y linq para el acceso a los datos
 
 Modelo de Datos 
 -----------
-El modelo tiene una entidad llamada **Usuario** y estas es su definicion:
-![](/modelo.jpg)
-
+El modelo tiene una entidad llamada **Usuario** y esta es su definicion:
+**Id** TEXT PRIMARY KEY 
+**Nombre** TEXT UNIQUE NOT NULL
+**Cuenta** VARCHAR(5) NOT NULL
+**Admin** BOOLEAN NOT NULL
+**Balance** NUMERIC NOT NULL
+**Password** VARCHAR(10) NOT NULL
+ 
 Datos 
 -----------
 La tabla usuarios contiene dos registros de usuario, un administrador y un usuario comun
-![](/datos.jpg)
 
 Api
 -----------
 El Api contiene los controladores;
-* api/Login: para la autenticacion
-* api/Usuarios: para el manejo de los datos de los usuarios
+* **api/Login:** para la autenticacion
+* **api/Usuarios:** para el manejo de los datos de los usuarios
 
 Como metodo de autenticacion se usa JWT para la autenticacion basada en tokens 
 
