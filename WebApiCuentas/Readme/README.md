@@ -1,5 +1,4 @@
-# README.MD
-WebApiCuentas
+README WebApiCuentas
 =======
 Notas sobre la aplicacion
 
