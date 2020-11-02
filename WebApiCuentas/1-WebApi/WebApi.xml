@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:WebApi.Controllers.LoginController">
+            <summary>
+            controlador para el api de autenticacion de usuarios
+            </summary>
+        </member>
+        <member name="F:WebApi.Controllers.LoginController.fachadaUsuario">
+            <summary>
+            propiedad a inyectar la fachada de la entidad
+            </summary>
+        </member>
+        <member name="F:WebApi.Controllers.LoginController.tokenBuilder">
+            <summary>
+            propiedad a inyectar la construccion de tokens
+            </summary>
+        </member>
+        <member name="F:WebApi.Controllers.LoginController.logger">
+            <summary>
+            propiedad a inyectar el logger
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.LoginController.#ctor(Facade.Contracts.IFachadaUsuario,WebApi.Servicios.Contrats.ITokenBuilder,Microsoft.Extensions.Logging.ILogger{WebApi.Controllers.LoginController})">
+            <summary>
+            constructor de la clase
+            </summary>
+            <param name="fachadaUsuario">inyeccion de la fachada de la entidad</param>
+            <param name="tokenBuilder">inyeccion del servicio de construccion de tokens</param>
+        </member>
+        <member name="M:WebApi.Controllers.LoginController.Post(Models.DTO.DtoLogin)">
+            <summary>
+            el metodo para la autenticacion y obtencion del token
+            </summary>
+            <param name="dtoLogin">el objeto con la informacion del usuario para inicio de sesion</param>
+            <returns>resultado de la accion, devuelve el token de autorizacion</returns>
+        </member>
+        <member name="T:WebApi.Controllers.UsuarioController">
+            <summary>
+            controlador para el api de Usuarios
+            </summary>
+        </member>
+        <member name="F:WebApi.Controllers.UsuarioController.fachadaUsuario">
+            <summary>
+            propiedad a inyectar la fachada de la entidad
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.UsuarioController.IsAdmin">
+            <summary>
+            metodo que valida so el usuario autenticado tiene el rol de administrador
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.UsuarioController.IsUser">
+            <summary>
+            metodo que valida so el usuario autenticado tiene el rol de usuario comun
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.UsuarioController.#ctor(Facade.Contracts.IFachadaUsuario)">
+            <summary>
+            constructor de la clase
+            </summary>
+            <param name="fachadaUsuario">inyeccion de la fachada de la entidad</param>
+        </member>
+        <member name="M:WebApi.Controllers.UsuarioController.Get">
+            <summary>
+            Accion para la recuperacion de todos los usuarios (seccion para el rol Admin)
+            </summary>
+            <returns>resultado de la accion con todos los usuarios</returns>
+        </member>
+        <member name="M:WebApi.Controllers.UsuarioController.Post(Models.DTO.DtoUsuario)">
+            <summary>
+            Accion para la insercion de usuarios (seccion para el rol Admin)
+            </summary>
+            <returns>resultado de la accion con los datos del nuevo usuario</returns>
+        </member>
+        <member name="M:WebApi.Controllers.UsuarioController.Put(System.String,Models.Usuario)">
+            <summary>
+            Accion para la actualizacion de usuarios (seccion para el rol Admin)
+            </summary>
+            <returns>resultado de la accion con los datos del usuario actualizado</returns>
+        </member>
+        <member name="M:WebApi.Controllers.UsuarioController.Delete(System.String)">
+            <summary>
+            Accion para la eliminacion de un usuario (seccion para el rol Admin)
+            </summary>
+            <returns>resultado de la accion, devuelve 1 si el usuario fue eliminado</returns>
+        </member>
+        <member name="M:WebApi.Controllers.UsuarioController.GetUser">
+            <summary>
+            Accion para la recuperacion de un usuario(seccion para el rol User)
+            </summary>
+            <returns>resultado de la accion con los datos del usuario encontrado para el nombre dado</returns>
+        </member>
+        <member name="M:WebApi.Controllers.UsuarioController.Put(System.String,System.Decimal)">
+            <summary>
+            Accion para transferir de una cuanta de usuario a otra cuenta de usuario (seccion para el rol User)
+            </summary>
+            <returns>resultado de la accion, devuelve true si la operacion fue realizada</returns>
+        </member>
+    </members>
+</doc>
