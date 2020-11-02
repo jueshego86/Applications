@@ -26,7 +26,9 @@ El modelo tiene una entidad llamada **Usuario** y esta es su definicion:
  
 Datos 
 -----------
-La tabla usuarios contiene dos registros de usuario, un administrador y un usuario comun
+La tabla usuarios contiene dos registros de usuario, un administrador y un usuario comun:
+*Admin-> Nombre: admin1, Password: adm123
+*User-> Nombre: juan, Password: juan123
 
 Api
 -----------
