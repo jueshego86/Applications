@@ -17,12 +17,12 @@ La capa de **DataAccess** usa Entity Framework y linq para el acceso a los datos
 Modelo de Datos 
 -----------
 El modelo tiene una entidad llamada **Usuario** y esta es su definicion:
-**Id** TEXT PRIMARY KEY 
-**Nombre** TEXT UNIQUE NOT NULL
-**Cuenta** VARCHAR(5) NOT NULL
-**Admin** BOOLEAN NOT NULL
-**Balance** NUMERIC NOT NULL
-**Password** VARCHAR(10) NOT NULL
+* **Id** TEXT PRIMARY KEY 
+* **Nombre** TEXT UNIQUE NOT NULL
+* **Cuenta** VARCHAR(5) NOT NULL
+* **Admin** BOOLEAN NOT NULL
+* **Balance** NUMERIC NOT NULL
+* **Password** VARCHAR(10) NOT NULL
  
 Datos 
 -----------
