@@ -2,7 +2,8 @@
 WebApiCuentas
 Notas sobre la aplicacion
 
-## Contenido
+Contenido
+=======
 La solucion contiene un proyecto web **WebApi** desarrollado con Visual Studio 2017 Community, con plantilla Api .Net Core 2.0 en lenguaje C#
 
 ##Base de Datos
