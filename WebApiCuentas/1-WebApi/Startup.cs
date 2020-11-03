@@ -45,7 +45,7 @@ namespace WebApi
             services.AddDbContext<Context>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddScoped<ITokenBuilder, TokenBuilder>();
+            services.AddScoped<ITokenBuilder, JWTBuilder>();
             services.AddScoped<IFachadaUsuario, FachadaUsuario>();
             services.AddScoped<IAccesoDatosUsuario, AccesoDatosUsuario>();
 
@@ -104,6 +104,21 @@ namespace WebApi
             //services.Configure<MvcOptions>(options =>
             //{
             //    options.Filters.Add(new CorsAuthorizationFilterFactory("MyPolicy"));
+            //});
+
+            // Add Authorization policies
+            //services.AddAuthorization(options =>
+            //{
+            //    options.AddPolicy("PoliticaAdmin", policy =>
+            //    {
+            //        policy.RequireAuthenticatedUser();
+            //        policy.RequireClaim("IsAdmin");
+            //    });
+            //    options.AddPolicy("PoliticaUser", policy =>
+            //    {
+            //        policy.RequireAuthenticatedUser();
+            //        policy.RequireClaim("IsUser");
+            //    });
             //});
         }
 

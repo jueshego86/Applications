@@ -29,20 +29,14 @@ namespace WebApi.Controllers
         private ITokenBuilder tokenBuilder;
 
         /// <summary>
-        /// propiedad a inyectar el logger
-        /// </summary>
-        private readonly ILogger<LoginController> logger;
-
-        /// <summary>
         /// constructor de la clase
         /// </summary>
         /// <param name="fachadaUsuario">inyeccion de la fachada de la entidad</param>
         /// <param name="tokenBuilder">inyeccion del servicio de construccion de tokens</param>
-        public LoginController(IFachadaUsuario fachadaUsuario, ITokenBuilder tokenBuilder, ILogger<LoginController> logger)
+        public LoginController(IFachadaUsuario fachadaUsuario, ITokenBuilder tokenBuilder)
         {
             this.fachadaUsuario = fachadaUsuario;
             this.tokenBuilder = tokenBuilder;
-            this.logger = logger;
         }
 
         /// <summary>

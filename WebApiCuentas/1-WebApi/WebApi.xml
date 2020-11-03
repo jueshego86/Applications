@@ -19,12 +19,7 @@
             propiedad a inyectar la construccion de tokens
             </summary>
         </member>
-        <member name="F:WebApi.Controllers.LoginController.logger">
-            <summary>
-            propiedad a inyectar el logger
-            </summary>
-        </member>
-        <member name="M:WebApi.Controllers.LoginController.#ctor(Facade.Contracts.IFachadaUsuario,WebApi.Servicios.Contrats.ITokenBuilder,Microsoft.Extensions.Logging.ILogger{WebApi.Controllers.LoginController})">
+        <member name="M:WebApi.Controllers.LoginController.#ctor(Facade.Contracts.IFachadaUsuario,WebApi.Servicios.Contrats.ITokenBuilder)">
             <summary>
             constructor de la clase
             </summary>
@@ -47,18 +42,6 @@
             <summary>
             propiedad a inyectar la fachada de la entidad
             </summary>
-        </member>
-        <member name="M:WebApi.Controllers.UsuarioController.IsAdmin">
-            <summary>
-            metodo que valida so el usuario autenticado tiene el rol de administrador
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:WebApi.Controllers.UsuarioController.IsUser">
-            <summary>
-            metodo que valida so el usuario autenticado tiene el rol de usuario comun
-            </summary>
-            <returns></returns>
         </member>
         <member name="M:WebApi.Controllers.UsuarioController.#ctor(Facade.Contracts.IFachadaUsuario)">
             <summary>
@@ -101,6 +84,29 @@
             Accion para transferir de una cuanta de usuario a otra cuenta de usuario (seccion para el rol User)
             </summary>
             <returns>resultado de la accion, devuelve true si la operacion fue realizada</returns>
+        </member>
+        <member name="T:WebApi.Servicios.JWTBuilder">
+            <summary>
+            clase para contruccion de tokens JWT
+            </summary>
+        </member>
+        <member name="F:WebApi.Servicios.JWTBuilder.config">
+            <summary>
+            propiedad a inyectar el objeto configuracion
+            </summary>
+        </member>
+        <member name="M:WebApi.Servicios.JWTBuilder.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            constructor 
+            </summary>
+            <param name="config"></param>
+        </member>
+        <member name="M:WebApi.Servicios.JWTBuilder.BuildToken(Models.Usuario)">
+            <summary>
+            metodo para la construccion del token
+            </summary>
+            <param name="usuario"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

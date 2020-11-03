@@ -24,28 +24,9 @@ namespace WebApi.Controllers
         /// propiedad a inyectar la fachada de la entidad
         /// </summary>
         private IFachadaUsuario fachadaUsuario;
-
-        /// <summary>
-        /// metodo que valida so el usuario autenticado tiene el rol de administrador
-        /// </summary>
-        /// <returns></returns>
-        private bool IsAdmin()
-        {
-            //bool isAdmin = User.Claims.ToList().FirstOrDefault(c => c.Type.ToString().Equals(ClaimTypes.Role)).Value == "Admin" ? true : false;
-
-            return User.IsInRole("Admin");
-        }
-
-        /// <summary>
-        /// metodo que valida so el usuario autenticado tiene el rol de usuario comun
-        /// </summary>
-        /// <returns></returns>
-        private bool IsUser()
-        {
-            return User.IsInRole("User");
-        }
         #endregion
 
+        #region public methods
         /// <summary>
         /// constructor de la clase
         /// </summary>
@@ -64,12 +45,14 @@ namespace WebApi.Controllers
         [HttpGet("admin")]
         public async Task<ActionResult> Get()
         {
-            if (this.IsAdmin())
-            {
-                return Ok(await this.fachadaUsuario.ListarUsuarios());
-            }
+            //bool isAdmin = User.Claims.ToList().FirstOrDefault(c => c.Type.ToString().Equals(ClaimTypes.Role)).Value == "Admin" ? true : false;
 
-            return StatusCode(401);
+            //if (User.IsInRole("Admin"))
+            //{
+            return Ok(await this.fachadaUsuario.ListarUsuarios());
+            //}
+
+            //return StatusCode(401);
         }
 
         /// <summary>
@@ -78,13 +61,9 @@ namespace WebApi.Controllers
         /// <returns>resultado de la accion con los datos del nuevo usuario</returns>
         // POST: api/Usuario
         [HttpPost("admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Post([FromBody]DtoUsuario dtoUsuario)
         {
-            if (!this.IsAdmin())
-            {
-                return StatusCode(401);
-            }
-
             if (dtoUsuario == null)
             {
                 return BadRequest(new
@@ -125,13 +104,9 @@ namespace WebApi.Controllers
         /// <returns>resultado de la accion con los datos del usuario actualizado</returns>
         // PUT: api/usuarios/admin/jose
         [HttpPut("admin/{nombre}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Put([FromRoute]string nombre, [FromBody]Usuario usuario)
         {
-            if (!this.IsAdmin())
-            {
-                return StatusCode(401);
-            }
-
             if (usuario == null)
             {
                 return BadRequest(new
@@ -188,13 +163,9 @@ namespace WebApi.Controllers
         /// <returns>resultado de la accion, devuelve 1 si el usuario fue eliminado</returns>
         // DELETE: api/usuarios/admin/jose
         [HttpDelete("admin/{nombre}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Delete([FromRoute]string nombre)
         {
-            if (!this.IsAdmin())
-            {
-                return StatusCode(401);
-            }
-
             if (string.IsNullOrEmpty(nombre))
             {
                 return BadRequest(0);
@@ -218,26 +189,20 @@ namespace WebApi.Controllers
         /// <returns>resultado de la accion con los datos del usuario encontrado para el nombre dado</returns>
         // GET: api/Usuarios/user
         [HttpGet("user")]
+        [Authorize(Roles = "User")]
         public async Task<ActionResult> GetUser()
         {
-            if (this.IsUser())
-            {
-                Usuario usuario = await this.fachadaUsuario.BuscarUsuario(User.Identity.Name);
+            Usuario usuario = await this.fachadaUsuario.BuscarUsuario(User.Identity.Name);
 
-                if (usuario != null)
-                {
-                    return Ok(usuario);
-                }
-
-                return BadRequest(new
-                {
-                    mensaje = "remitente no existe"
-                });
-            }
-            else
+            if (usuario != null)
             {
-                return StatusCode(401);
+                return Ok(usuario);
             }
+
+            return BadRequest(new
+            {
+                mensaje = "remitente no existe"
+            });
         }
 
         /// <summary>
@@ -246,13 +211,9 @@ namespace WebApi.Controllers
         /// <returns>resultado de la accion, devuelve true si la operacion fue realizada</returns>
         // PUT: api/usuarios/user/pedro
         [HttpPut("user/{nombre}/{valor}")]
+        [Authorize(Roles = "User")]
         public async Task<ActionResult> Put([FromRoute]string nombre, [FromRoute]decimal valor)
         {
-            if (!this.IsUser())
-            {
-                return StatusCode(401);
-            }
-
             if (valor > 0)
             {
                 Usuario usuarioDestino = await this.fachadaUsuario.BuscarUsuario(nombre);
@@ -279,7 +240,7 @@ namespace WebApi.Controllers
 
                 if (response)
                 {
-                    return Ok(true);
+                    return Ok($"Nuevo saldo: €{usuarioRemitente.Balance} ");
                 }
                 else
                 {
@@ -294,6 +255,7 @@ namespace WebApi.Controllers
                 });
             }
         }
+        #endregion
         #endregion
     }
 }

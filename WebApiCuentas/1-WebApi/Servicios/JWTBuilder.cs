@@ -13,17 +13,34 @@ using WebApi.Servicios.Contrats;
 
 namespace WebApi.Servicios
 {
-    public class TokenBuilder : ITokenBuilder
+    /// <summary>
+    /// clase para contruccion de tokens JWT
+    /// </summary>
+    public class JWTBuilder : ITokenBuilder
     {
+        /// <summary>
+        /// propiedad a inyectar el objeto configuracion
+        /// </summary>
         private IConfiguration config;
 
-        public TokenBuilder(IConfiguration config)
+        /// <summary>
+        /// constructor 
+        /// </summary>
+        /// <param name="config"></param>
+        public JWTBuilder(IConfiguration config)
         {
             this.config = config;
         }
 
+        /// <summary>
+        /// metodo para la construccion del token
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <returns></returns>
         public object BuildToken(Usuario usuario)
         {
+            //string claimRol = usuario.Admin ? "Admin" : "User";
+
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.UniqueName, usuario.Nombre),
